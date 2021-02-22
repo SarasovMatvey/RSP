@@ -1,6 +1,6 @@
 import Rsp from "./Rsp/Rsp";
 
-import './base.sass'
+import "./assets/styles/index.sass";
 
 function App() {
   return (
