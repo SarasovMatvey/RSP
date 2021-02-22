@@ -3,9 +3,7 @@ import RspIcon from "./RspIcon/RspIcon";
 
 class Rsp extends Component {
   render() {
-    return (
-      <RspIcon />
-    )
+    return <RspIcon choice="paper" />;
   }
 }
 
