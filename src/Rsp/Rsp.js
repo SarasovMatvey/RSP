@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import RspHeader from "./RspHeader/RspHeader";
-import RspIcon from "./RspIcon/RspIcon";
+import RspGameField from "./RspGameField/RspGameField";
 
 import "./Rsp.sass";
 
@@ -9,7 +9,7 @@ class Rsp extends Component {
     return (
       <div className="rsp">
         <RspHeader />
-        <RspIcon choice="scissors" />
+        <RspGameField />
       </div>
     );
   }

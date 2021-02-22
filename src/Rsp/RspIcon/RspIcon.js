@@ -9,7 +9,10 @@ import "./RspIcon.sass";
 class RspIcon extends Component {
   render() {
     return (
-      <div className="rsp__icon" onClick={this.props.click}>
+      <div
+        className={`rsp__icon ${this.props.classes || ""}`}
+        onClick={this.props.click}
+      >
         <img
           src={this._getChoiceImg(this.props.choice)}
           alt={this.props.choice}
