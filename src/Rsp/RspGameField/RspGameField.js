@@ -7,6 +7,8 @@ import "./RspGameField.sass";
 class RspGameField extends Component {
   state = {
     computerChoice: null,
+    wins: 0,
+    fails: 0,
   };
 
   render() {
@@ -23,23 +25,47 @@ class RspGameField extends Component {
   }
 
   _processChoice(choice) {
-    this._generateComputerChoice();
+    this._generateComputerChoice(() => {
+      let roundResult = this._compare(choice);
+      if (roundResult === 1) {
+        // TODO change this.state.wins
+      }
+    });
   }
 
-  _generateComputerChoice() {
+  _generateComputerChoice(cb) {
     let choices = ["rock", "scissors", "paper"];
     let randomIndex = this._getRandomIntInclusive(0, choices.length - 1);
     let randomChoice = choices[randomIndex];
 
-    this.setState({
-      computerChoice: randomChoice,
-    });
+    this.setState(
+      {
+        computerChoice: randomChoice,
+      },
+      cb
+    );
   }
 
   _getRandomIntInclusive(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  _compare(user, computer = this.state.computerChoice) {
+    let results = {
+      rock: ["scissors"],
+      scissors: ["paper"],
+      paper: ["rock"],
+    };
+
+    if (user === computer) {
+      return 0;
+    } else if (results[user].includes(computer)) {
+      return 1;
+    } else {
+      return -1;
+    }
   }
 }
 
