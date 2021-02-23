@@ -14,16 +14,20 @@ class Rsp extends Component {
     return (
       <div className="rsp">
         <RspHeader wins={this.state.wins} fails={this.state.fails} />
-        <RspGameField updateCounter={this._updateCounter.bind(this)} />
+        <RspGameField onRaundEnd={this._onRaundEnd.bind(this)} />
       </div>
     );
   }
 
-  _updateCounter(roundResult) {
+  _onRaundEnd(roundResult) {
+    this._updateCounter(roundResult, () => {});
+  }
+
+  _updateCounter(roundResult, cb) {
     if (roundResult === 1) {
-      this.setState({ wins: this.state.wins + 1 });
+      this.setState({ wins: this.state.wins + 1 }, cb);
     } else if (roundResult === -1) {
-      this.setState({ fails: this.state.fails + 1 });
+      this.setState({ fails: this.state.fails + 1 }, cb);
     }
   }
 }

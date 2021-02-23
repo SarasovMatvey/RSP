@@ -58,11 +58,11 @@ class RspGameField extends Component {
     };
 
     if (user === computer) {
-      this.props.updateCounter(0);
+      this.props.onRaundEnd(0);
     } else if (results[user].includes(computer)) {
-      this.props.updateCounter(1);
+      this.props.onRaundEnd(1);
     } else {
-      this.props.updateCounter(-1);
+      this.props.onRaundEnd(-1);
     }
   }
 }
