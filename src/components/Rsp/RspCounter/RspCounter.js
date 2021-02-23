@@ -8,11 +8,11 @@ class RspCounter extends Component {
       <div className="rsp__counter">
         <div className="rsp__counter-field">
           <span className="rsp__counter-field-text">Wins:</span>
-          <span className="rsp__counter-wins">0</span>
+          <span className="rsp__counter-wins">{this.props.wins}</span>
         </div>
         <div className="rsp__counter-field">
           <span className="rsp__counter-field-text">Fails:</span>
-          <span className="rsp__counter-fails">0</span>
+          <span className="rsp__counter-fails">{this.props.fails}</span>
         </div>
       </div>
     );

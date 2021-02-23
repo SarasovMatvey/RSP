@@ -7,8 +7,6 @@ import "./RspGameField.sass";
 class RspGameField extends Component {
   state = {
     computerChoice: null,
-    wins: 0,
-    fails: 0,
   };
 
   render() {
@@ -60,11 +58,11 @@ class RspGameField extends Component {
     };
 
     if (user === computer) {
-      return 0;
+      this.props.updateCounter(0);
     } else if (results[user].includes(computer)) {
-      return 1;
+      this.props.updateCounter(1);
     } else {
-      return -1;
+      this.props.updateCounter(-1);
     }
   }
 }

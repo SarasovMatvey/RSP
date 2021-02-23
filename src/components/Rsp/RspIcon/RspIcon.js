@@ -1,9 +1,9 @@
 import { Component } from "react";
 
-import rock from "../../assets/img/rock.png";
-import scissors from "../../assets/img/scissors.png";
-import paper from "../../assets/img/paper.png";
-import question from "../../assets/img/icons/question.gif";
+import rock from "../../../assets/img/rock.png";
+import scissors from "../../../assets/img/scissors.png";
+import paper from "../../../assets/img/paper.png";
+import question from "../../../assets/img/icons/question.gif";
 
 import "./RspIcon.sass";
 
