@@ -25,9 +25,7 @@ class RspGameField extends Component {
   _processChoice(choice) {
     this._generateComputerChoice(() => {
       let roundResult = this._compare(choice);
-      if (roundResult === 1) {
-        // TODO change this.state.wins
-      }
+      this.props.onRaundEnd(roundResult);
     });
   }
 
@@ -58,11 +56,11 @@ class RspGameField extends Component {
     };
 
     if (user === computer) {
-      this.props.onRaundEnd(0);
+      return 0;
     } else if (results[user].includes(computer)) {
-      this.props.onRaundEnd(1);
+      return 1;
     } else {
-      this.props.onRaundEnd(-1);
+      return -1;
     }
   }
 }

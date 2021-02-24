@@ -1,13 +1,16 @@
 import React, { Component } from "react";
 import RspHeader from "./RspHeader/RspHeader";
 import RspGameField from "./RspGameField/RspGameField";
+import Modal from "../Modal/Modal";
 
 import "./Rsp.sass";
+import RspModal from "../RspModal/RspModal";
 
 class Rsp extends Component {
   state = {
     wins: 0,
     fails: 0,
+    isShowModal: false,
   };
 
   render() {
@@ -15,12 +18,22 @@ class Rsp extends Component {
       <div className="rsp">
         <RspHeader wins={this.state.wins} fails={this.state.fails} />
         <RspGameField onRaundEnd={this._onRaundEnd.bind(this)} />
+        <RspModal
+          isShowModal={this.state.isShowModal}
+          wins={this.state.wins}
+          fails={this.state.fails}
+          onClose={this._resetScore.bind(this)}
+        />
       </div>
     );
   }
 
   _onRaundEnd(roundResult) {
-    this._updateCounter(roundResult, () => {});
+    this._updateCounter(roundResult, () => {
+      if (this.state.wins === 5 || this.state.fails === 5) {
+        this._showGameResult();
+      }
+    });
   }
 
   _updateCounter(roundResult, cb) {
@@ -29,6 +42,18 @@ class Rsp extends Component {
     } else if (roundResult === -1) {
       this.setState({ fails: this.state.fails + 1 }, cb);
     }
+  }
+
+  _showGameResult() {
+    this.setState({ isShowModal: true });
+  }
+
+  _resetScore() {
+    this.setState({
+      wins: 0,
+      fails: 0,
+      isShowModal: false,
+    });
   }
 }
 
