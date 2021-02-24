@@ -1,5 +1,5 @@
 import { Component } from "react";
-import Modal from "../Modal/Modal";
+import Modal from "../../Modal/Modal";
 
 import "./RspModal.sass";
 

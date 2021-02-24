@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import RspHeader from "./RspHeader/RspHeader";
 import RspGameField from "./RspGameField/RspGameField";
-import Modal from "../Modal/Modal";
+import RspModal from "./RspModal/RspModal";
 
 import "./Rsp.sass";
-import RspModal from "../RspModal/RspModal";
 
 class Rsp extends Component {
   state = {
