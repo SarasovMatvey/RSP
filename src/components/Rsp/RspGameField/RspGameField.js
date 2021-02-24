@@ -8,14 +8,20 @@ class RspGameField extends Component {
   state = {
     computerChoice: null,
   };
-
   render() {
     return (
       <div className="rsp__game-field">
         <div className="container rsp__game-field-container">
           <RspUserControls click={this._processChoice.bind(this)} />
           <div className="rsp__computer">
-            <RspIcon choice={this.state.computerChoice} />
+            <RspIcon
+              choice={this.state.computerChoice}
+              styles={
+                this.state.computerChoice
+                  ? {}
+                  : { padding: "0", height: "auto" }
+              }
+            />
           </div>
         </div>
       </div>
@@ -25,7 +31,7 @@ class RspGameField extends Component {
   _processChoice(choice) {
     this._generateComputerChoice(() => {
       let roundResult = this._compare(choice);
-      this.props.onRaundEnd(roundResult);
+      this.props.onRoundEnd(roundResult);
     });
   }
 

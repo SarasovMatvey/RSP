@@ -11,6 +11,7 @@ class RspIcon extends Component {
   render() {
     return (
       <div
+        style={this.props.styles}
         className={`rsp__icon ${this.props.classes || ""}`}
         onClick={this.props.click}
       >
