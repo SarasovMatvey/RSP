@@ -3,7 +3,6 @@ import Loader from "react-loaders";
 import RspIcon from "../RspIcon/RspIcon";
 import RspUserControls from "../RspUserControls/RspUserControls";
 
-import "loaders.css/src/animations/pacman.scss";
 import "./RspGameField.sass";
 
 class RspGameField extends Component {
@@ -21,7 +20,11 @@ class RspGameField extends Component {
                   : { padding: "0", height: "auto" }
               }
             />
-            <Loader type="pacman" active={this.props.isLoaderActive} />
+            <Loader
+              type="pacman"
+              active={this.props.isLoaderActive}
+              innerClassName="rsp__loader"
+            />
           </div>
         </div>
       </div>
@@ -29,9 +32,14 @@ class RspGameField extends Component {
   }
 
   _processChoice(choice) {
-    this._generateComputerChoice();
-    let roundResult = this._compare(choice);
-    this.props.onRoundEnd(roundResult);
+    this.props.onGenerationStart();
+
+    setTimeout(() => {
+      this._generateComputerChoice();
+      let roundResult = this._compare(choice);
+      this.props.onRoundEnd(roundResult);
+      this.props.onGenerationEnd();
+    }, 1000);
   }
 
   _generateComputerChoice() {

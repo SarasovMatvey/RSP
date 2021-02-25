@@ -1,3 +1,10 @@
+$primary-color: var(--c-main);
+@import "loaders.css/src/animations/pacman.scss";
+.loader-hidden 
+  display: none
+.loader-active 
+  display: block
+
 .rsp
   &__game-field
     position: relative
@@ -16,3 +23,10 @@
   &__computer
     display: flex
     align-items: center
+    overflow: hidden
+    position: relative
+  &__loader
+    position: absolute !important
+    left: 50%
+    top: 20%  
+    transform: translateX(-50%)
