@@ -1,13 +1,12 @@
 import { Component } from "react";
+import Loader from "react-loaders";
 import RspIcon from "../RspIcon/RspIcon";
 import RspUserControls from "../RspUserControls/RspUserControls";
 
+import "loaders.css/src/animations/pacman.scss";
 import "./RspGameField.sass";
 
 class RspGameField extends Component {
-  state = {
-    computerChoice: null,
-  };
   render() {
     return (
       <div className="rsp__game-field">
@@ -15,13 +14,14 @@ class RspGameField extends Component {
           <RspUserControls click={this._processChoice.bind(this)} />
           <div className="rsp__computer">
             <RspIcon
-              choice={this.state.computerChoice}
+              choice={this.props.computerChoice}
               styles={
-                this.state.computerChoice
+                this.props.computerChoice
                   ? {}
                   : { padding: "0", height: "auto" }
               }
             />
+            <Loader type="pacman" active={this.props.isLoaderActive} />
           </div>
         </div>
       </div>
@@ -29,23 +29,17 @@ class RspGameField extends Component {
   }
 
   _processChoice(choice) {
-    this._generateComputerChoice(() => {
-      let roundResult = this._compare(choice);
-      this.props.onRoundEnd(roundResult);
-    });
+    this._generateComputerChoice();
+    let roundResult = this._compare(choice);
+    this.props.onRoundEnd(roundResult);
   }
 
-  _generateComputerChoice(cb) {
+  _generateComputerChoice() {
     let choices = ["rock", "scissors", "paper"];
     let randomIndex = this._getRandomIntInclusive(0, choices.length - 1);
     let randomChoice = choices[randomIndex];
 
-    this.setState(
-      {
-        computerChoice: randomChoice,
-      },
-      cb
-    );
+    this.props.onComputerChoiceGen(randomChoice);
   }
 
   _getRandomIntInclusive(min, max) {
@@ -54,7 +48,7 @@ class RspGameField extends Component {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-  _compare(user, computer = this.state.computerChoice) {
+  _compare(user, computer = this.props.computerChoice) {
     let results = {
       rock: ["scissors"],
       scissors: ["paper"],

@@ -8,12 +8,4 @@ class RspHeader extends Component {
     return (
       <header className="rsp__header">
         <div className="container rsp__container">
-          <h2 className="rsp__title">Rock Scissors Paper</h2>
-          <RspCounter wins={this.props.wins} fails={this.props.fails} />
-        </div>
-      </header>
-    );
-  }
-}
-
-export default RspHeader;
+          <h2 className="rsp__title">Rock Scissors Paper</h2> <RspCounter wins={this.props.wins} fails={this.props.fails} /> </div> </header>); } } export default RspHeader;

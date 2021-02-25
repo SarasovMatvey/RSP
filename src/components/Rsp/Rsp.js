@@ -10,21 +10,33 @@ class Rsp extends Component {
     wins: 0,
     fails: 0,
     isShowModal: false,
+    computerChoice: null,
   };
 
   render() {
     return (
       <div className="rsp">
         <RspHeader wins={this.state.wins} fails={this.state.fails} />
-        <RspGameField onRoundEnd={this._onRoundEnd.bind(this)} />
+        <RspGameField
+          onRoundEnd={this._onRoundEnd.bind(this)}
+          onComputerChoiceGen={this._setComputerChoice.bind(this)}
+          computerChoice={this.state.computerChoice}
+        />
         <RspModal
           isShowModal={this.state.isShowModal}
           wins={this.state.wins}
           fails={this.state.fails}
           onClose={this._resetGame.bind(this)}
+          isLoaderActive={true}
         />
       </div>
     );
+  }
+
+  _setComputerChoice(choice) {
+    this.setState({
+      computerChoice: choice,
+    });
   }
 
   _onRoundEnd(roundResult) {
@@ -52,6 +64,7 @@ class Rsp extends Component {
       wins: 0,
       fails: 0,
       isShowModal: false,
+      computerChoice: null,
     });
   }
 }
